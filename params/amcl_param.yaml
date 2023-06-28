@@ -1,0 +1,30 @@
+robot_2:
+  amcl:
+    ros__parameters:
+      use_sim_time: False
+      base_frame_id: "robot_2/base_link"
+      map_topic: "/map"
+      max_particles: 5000 # 2000
+      min_particles: 500
+      odom_frame_id: "robot_2/odom"
+      initial_pose:
+        x: 0.
+        y: 0.
+        yaw: 0.
+      resample_interval: 1
+      odom_model_type: "diff-corrected" # new
+      robot_model_type: "differential"  # in humble+
+      scan_topic: 'scan'
+      set_initial_pose: True
+      tf_broadcast: true
+      update_min_a: 0.01
+      update_min_d: 0.01
+      laser_model_type: "likelihood_field"
+      
+  amcl_map_client:
+    ros__parameters:
+      use_sim_time: False
+
+  amcl_rclcpp_node:
+    ros__parameters:
+      use_sim_time: False

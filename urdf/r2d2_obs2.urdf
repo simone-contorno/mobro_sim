@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<robot name="r2d2_obs2">
+    
+<material name="color">
+    <color rgba="1 0 0 1"/>
+</material>
+  
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <link name="obs2/base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.6" radius="0.2"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+  </link>
+  
+  <link name="obs2/base_footprint">
+  </link>
+  
+  <joint name="footprint" type="fixed">
+      <child link="obs2/base_link"/>
+      <parent link="obs2/base_footprint"/>
+    <origin xyz="0 0 .47"/>
+   </joint>
+   
+  <link name="obs2/right_leg">
+    <visual>
+      <geometry>
+        <box size="0.6 .1 .2"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0 -0.3"/>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_right_leg" type="fixed">
+    <parent link="obs2/base_link"/>
+    <child link="obs2/right_leg"/>
+    <origin xyz="0 -0.22 .25"/>
+  </joint>
+
+  <link name="obs2/right_base">
+    <visual>
+      <geometry>
+        <box size="0.4 .1 .1"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="right_base_joint" type="fixed">
+    <parent link="obs2/right_leg"/>
+    <child link="obs2/right_base"/>
+    <origin xyz="0 0 -0.6"/>
+  </joint>
+
+  <link name="obs2/right_front_wheel">
+    <visual>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.035"/>
+      </geometry>
+      <material name="black"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+  <joint name="right_front_wheel_joint" type="fixed">
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <parent link="obs2/right_base"/>
+    <child link="obs2/right_front_wheel"/>
+    <origin rpy="0 0 0" xyz="0.133333333333 0 -0.085"/>
+  </joint>
+
+  <link name="obs2/right_back_wheel">
+    <visual>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.035"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="right_back_wheel_joint" type="fixed">
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <parent link="obs2/right_base"/>
+    <child link="obs2/right_back_wheel"/>
+    <origin rpy="0 0 0" xyz="-0.133333333333 0 -0.085"/>
+  </joint>
+
+  <link name="obs2/left_leg">
+    <visual>
+      <geometry>
+        <box size="0.6 .1 .2"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0 -0.3"/>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_left_leg" type="fixed">
+    <parent link="obs2/base_link"/>
+    <child link="obs2/left_leg"/>
+    <origin xyz="0 0.22 .25"/>
+  </joint>
+
+  <link name="obs2/left_base">
+    <visual>
+      <geometry>
+        <box size="0.4 .1 .1"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="left_base_joint" type="fixed">
+    <parent link="obs2/left_leg"/>
+    <child link="obs2/left_base"/>
+    <origin xyz="0 0 -0.6"/>
+  </joint>
+
+  <link name="obs2/left_front_wheel">
+    <visual>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.035"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="left_front_wheel_joint" type="fixed">
+    <parent link="obs2/left_base"/>
+    <child link="obs2/left_front_wheel"/>
+    <origin rpy="0 0 0" xyz="0.133333333333 0 -0.085"/>
+  </joint>
+
+  <link name="obs2/left_back_wheel">
+    <visual>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.035"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="left_back_wheel_joint" type="fixed">
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <parent link="obs2/left_base"/>
+    <child link="obs2/left_back_wheel"/>
+    <origin rpy="0 0 0" xyz="-0.133333333333 0 -0.085"/>
+  </joint>
+
+  <link name="obs2/head">
+    <visual>
+      <geometry>
+        <sphere radius="0.2"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+  <joint name="head_swivel" type="fixed">
+    <parent link="obs2/base_link"/>
+    <child link="obs2/head"/>
+    <origin xyz="0 0 0.3"/>
+  </joint>
+
+  <link name="obs2/box">
+    <visual>
+      <geometry>
+        <box size=".08 .08 .08"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+  </link>
+
+  <joint name="tobox" type="fixed">
+    <parent link="obs2/head"/>
+    <child link="obs2/box"/>
+    <origin xyz="0.1814 0 0.1414"/>
+  </joint>
+  
+  <link name="obs2/carrot">
+      <visual>
+          <origin rpy="-1.57 0 0"/>
+          <geometry>
+              <mesh filename="package://mobro/urdf/carrot/carrot.dae" scale="0.003 0.003 0.003"/>
+          </geometry>
+      </visual>
+  </link>
+  
+    <joint name="carrot_disable" type="prismatic">
+    <parent link="obs2/base_footprint"/>
+    <child link="obs2/carrot_disable"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-100" upper="100" velocity="10" effort="-1"/>
+  </joint>   
+  
+  <joint name="carrot" type="prismatic">
+    <parent link="obs2/carrot_disable"/>
+    <child link="obs2/carrot"/>
+    <origin xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-100" upper="100" velocity="10" effort="-1"/>
+  </joint>
+  <link name="obs2/carrot_disable"/>  
+</robot>
